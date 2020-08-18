@@ -1,0 +1,390 @@
+<div id="application" class="page">
+  <div class="divided title">
+    Application
+  </div>
+
+  <div class="ui stackable page grid">
+    <div class="column">
+      <div class="ui form"
+            ng-class="{'loading': loading}">
+
+        <div class="divided title">Basic Information</div>
+
+        <fieldset ng-disabled="regIsClosed">
+
+        <div class="field">
+          <label> Email </label>
+          <input type="email"
+                 name="email"
+                 disabled="disabled"
+                 ng-model="user.email">
+        </div>
+
+        <div class="field">
+          <label> Full Name </label>
+          <input type="text"
+                 name="name"
+                 ng-model="user.profile.name">
+        </div>
+
+        <div class="field" ng-show="autoFilledSchool">
+          <label> School </label>
+          <input class="ui input"
+                 disabled="disabled"
+                 ng-show="autoFilledSchool"
+                 ng-model="user.profile.school">
+        </div>
+
+        <div class="field" ng-show="!autoFilledSchool">
+          <label> School </label>
+          <div id="school" class="ui search">
+            <div class="ui input">
+              <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">
+            </div>
+            <div class="results"></div>
+          </div>
+        </div>
+        <!-- NEW -->
+        <div class="field">
+          <label>School Level</label>
+          <select
+            name="School Level"
+            ng-model="user.profile.schoolLevel">
+            <option value="">School Level</option>
+            <option value="High School">High School</option>
+            <option value="College">College</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Graduation Year</label>
+          <select
+            name="year"
+            ng-model="user.profile.graduationYear">
+            <option value="">Graduation Year</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+
+        <!-- NEW -->
+        <div class="field">
+          <label>  What is your major (intended or declared)? </label>
+          <input type="text"
+                 name="major"
+                 ng-model="user.profile.major">
+        </div>
+        <!-- NEW -->
+        <div class="field">
+          <label> How did you hear about us?* </label>
+          <div>
+            <label>
+              <input type="radio" name="outreach" value="facebook" ng-model="user.profile.outreach" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Facebook
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="outreach" value="instagram" ng-model="user.profile.outreach" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Instagram
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="outreach" value="twitter" ng-model="user.profile.outreach" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Twitter
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="outreach" value="email" ng-model="user.profile.outreach" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Outreach Email
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="outreach" value="friend-family" ng-model="user.profile.outreach" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Friend/Family
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="outreach" value="internet-search" ng-model="user.profile.outreach" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Internet Search
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="outreach" value="other" ng-model="user.profile.outreach" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Other
+            </label>
+          </div>
+        </div>
+
+        <div class="divided title">Demographic Info</div>
+
+        <div class="field">
+          <label>Gender</label>
+          <select
+            name="gender"
+            ng-model="user.profile.gender">
+            <option value="">Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="O">Other</option>
+            <option value="N">I prefer not to answer.</option>
+          </select>
+        </div>
+        <!-- NEW -->
+        <div class="field">
+          <label> race?* (check all that apply)</label>
+            <select
+              name="race"
+              ng-model="user.profile.race">
+              <option value="">Race</option>
+              <option value="Non-Hispanic White or Euro-American">Non-Hispanic White or Euro-American</option>
+              <option value="Black, Afro-Caribbean, or African-American">Black, Afro-Caribbean, or African-American</option>
+              <option value="Latinx or Hispanic-American">Latinx or Hispanic-American</option>
+              <option value="East Asian or Asian-American">East Asian or Asian-American</option>
+              <option value="South Asian or South Asian-American">South Asian or South Asian-American</option>
+              <option value="Middle Eastern or North African">Middle Eastern or North African</option>
+              <option value="Native American or Alaskan Native">Native American or Alaskan Native</option>
+              <option value="Southeast Asian or Southeast Asian-American">Southeast Asian or Southeast Asian-American</option>
+              <option value="Hawaiian or Pacific Islander">Hawaiian or Pacific Islander</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to answer">Prefer not to answer</option>
+            </select>
+
+        </div>
+        <!-- NEW -->
+        <div class="field">
+          <label> Are you / will you be a <a class="popup" data-content="In other words, your parent(s) / legal guardian(s) did not complete a bachelor's degree.">first-generation</a> college student?*</label>
+          <div>
+            <label>
+              <input type="radio" name="firstGen" value="yes" ng-model="user.profile.firstGen" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Yes
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="firstGen" value="no" ng-model="user.profile.firstGen" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              No
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="firstGen" value="null" ng-model="user.profile.firstGen" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+              Prefer not to answer
+            </label>
+          </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="divided title">Tell Us About Yourself!</div>
+
+        <label><i>At HackMIT, we’re looking for passionate, diverse, and overall <strong>awesome</strong> people to join us - in other words, we’re looking for you! Tell us about your previous experience and what makes you a good fit. No need to write about technical topics - show us what you do best, whatever field it may be in!</i></label>
+
+        <div class="field">
+          <b><label class="ng-binding">What do you hack for?* (max 150 words)</label></b>
+          <label class="ng-binding"><font ng-class="wordCount1 > softWordLimit ? 'over-limit' : ''" class="ng-binding">0</font> / 150</label>
+          <br>
+          <textarea name="essay1" ng-model="user.profile.essay1" ng-change="updateWordCount1()" class="ng-pristine ng-untouched ng-valid ng-not-empty"></textarea>
+        </div>
+
+        <div class="field">
+          <b><label class="ng-binding">What is a project that you've worked on that you're proud of?* (max 150 words)</label></b>
+          <label class="ng-binding"><font ng-class="wordCount2 > softWordLimit ? 'over-limit' : ''" class="ng-binding">0</font> / 150</label>
+          <br>
+          <textarea name="essay2" ng-model="user.profile.essay2" ng-change="updateWordCount2()" class="ng-pristine ng-untouched ng-valid ng-not-empty"></textarea>
+        </div>
+
+        <div class="field">
+          <b><label class="ng-binding">Describe the best team you've ever worked on.* (max 150 words)</label></b>
+          <label class="ng-binding"><font ng-class="wordCount3 > softWordLimit ? 'over-limit' : ''" class="ng-binding">0</font> / 150</label>
+          <br>
+          <textarea name="essay3" ng-model="user.profile.essay3" ng-change="updateWordCount3()" class="ng-pristine ng-untouched ng-valid ng-not-empty"></textarea>
+        </div>
+
+        <div class="field">
+          <b><label class="ng-binding">What would you like to see at HackMIT, especially considering it's virtual?* (max 150 words)</label></b>
+          <label class="ng-binding"><font ng-class="wordCount4 > softWordLimit ? 'over-limit' : ''" class="ng-binding">0</font> / 150</label>
+          <br>
+          <textarea name="essay4" ng-model="user.profile.essay4" ng-change="updateWordCount4()" class="ng-pristine ng-untouched ng-valid ng-not-empty"></textarea>
+        </div>
+
+        <div class="divided title">Final Stretch!</div>
+
+        <br>
+        <br>
+
+        <label><i>We’re really excited that you decided to apply to HackMIT! We wanted to ask some questions to understand your background, experience, and expectations. First-time hackers and hackathon veterans are welcome: whether you’re an experienced engineer, amateur maker, artist, or technology enthusiast, we invite you to join us!</i></label>
+
+        <br>
+        <br>
+
+        <div class="field">
+          <b><label>What are you hoping to achieve and/or learn from your HackMIT experience?*</label></b>
+          <select
+            name="hopingTo"
+            ng-model="user.profile.hopingTo">
+            <option value="">Nothing</option>
+            <option value="Learn a new programming language / technology">Learn a new programming language / technology</option>
+            <option value="Meet new people and make new friends">Meet new people and make new friends</option>
+            <option value="Build a competitive project for prizes at the event">Build a competitive project for prizes at the event</option>
+            <option value="Meet industry mentors">Meet industry mentors</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label> How many years of coding experience do you have?* </label>
+          <div class="field">
+            <div>
+              <label>
+                <input type="radio" name="experience" value="0" ng-model="user.profile.experience" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                0
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="experience" value="1" ng-model="user.profile.experience" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                1
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="experience" value="2" ng-model="user.profile.experience" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                2
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="experience" value="3" ng-model="user.profile.experience" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                3
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="experience" value="4" ng-model="user.profile.experience" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                4
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="experience" value="5+" ng-model="user.profile.experience" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                5+
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label> How many hackathons have you participated in before?* </label>
+          <div class="field">
+            <div>
+              <label>
+                <input type="radio" name="hackathons" value="0" ng-model="user.profile.hackathons" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                0
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="hackathons" value="1" ng-model="user.profile.hackathons" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                1
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="hackathons" value="2" ng-model="user.profile.hackathons" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                2
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="hackathons" value="3" ng-model="user.profile.hackathons" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                3
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="hackathons" value="4" ng-model="user.profile.hackathons" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                4
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="hackathons" value="5+" ng-model="user.profile.hackathons" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                5+
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>What workshop / tech talk topics do you most want to see?</label>
+          <select
+            name="wantToSee"
+            ng-model="user.profile.wantToSee">
+            <option value="">Nothing</option>
+            <option value="Machine learning">Machine learning</option>
+            <option value="General AI">General AI</option>
+            <option value="iOS development">iOS development</option>
+            <option value="Android Development">Android Development</option>
+            <option value="IoT">IoT</option>
+            <option value="Backend">Backend</option>
+            <option value="Frontend">Frontend</option>
+            <option value="UI/Design">UI/Design</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Robotics">Robotics</option>
+            <option value="Other">Other</option>
+          </select>
+
+        </div>
+
+        <div class="field">
+          <b><label>Any additional questions/comments you have for us?</label></b>
+          <br>
+          <input type="text" name="questionscomments" ng-model="user.profile.questionsComments">
+        </div>
+
+        <div class="field">
+          <b><label>I would describe myself as a...</label></b>
+          <br>
+          <input type="text"
+                 placeholder="Designer, Data Scientist, iOS Wizard, Hacker Extraordinaire"
+                 ng-model="user.profile.description">
+        </div>
+
+
+
+        <div class="field"
+             ng-hide="isMitStudent">
+          <p>
+
+            Checking the box below affirms that you are or will be 13 years or older by <strong>DATE</strong>*
+
+          </p>
+          <div class="ui checkbox">
+            <input type="checkbox" id="adult" ng-model="user.profile.adult">
+            <label for="adult">I am 13 or older.</label>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="field" ng-hide="regIsClosed">
+          <button type="submit"
+                  class="fluid ui purple button"
+                  ng-click="submitForm()">
+            Submit
+          </button>
+        </div>
+
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
